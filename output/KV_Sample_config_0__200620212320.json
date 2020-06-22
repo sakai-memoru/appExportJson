@@ -1,0 +1,23 @@
+{
+    "BASE_FOLDER": "",
+    "INPUT_FOLDER": "input",
+    "OUTPUT_FOLDER": "output",
+    "TEMP_FOLDER": "input/temp",
+    "BACKUP_FOLDER": "input/backup",
+    "FORM_FOLDER": "forms",
+    "TRANSFORM_KEYVALUE": {
+        "SHEET_TYPE": "KEYVALUE",
+        "INPUT_LIKE": "KeyValueSheets/*.xlsx",
+        "TARGET_PARAM": "A1",
+        "MACRO_GET_METHOD": "GetKeyValue"
+    },
+    "TRANSFORM_LISTOBJECT": "",
+    "TRANSFORM_NAMES": "",
+    "TRANSFORM_DEFJSON": "",
+    "TRANSFORM_DEFINITION": "",
+    "TRANSFORM_RECORD": "",
+    "_source": "'KV_Sample.xlsx'!config",
+    "_source_data": "2020-06-16T23:57:52.000Z",
+    "_id": "9FE3AF48-2FA0-922C-9146-5EF6422A66B5",
+    "_created": "2020-06-20T12:23:20.000Z"
+}

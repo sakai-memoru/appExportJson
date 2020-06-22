@@ -1,0 +1,219 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="mded-output-date" content="2020/06/22 01:24:31">
+<title>README.md</title>
+<META http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+body {
+color: #000000;
+background-color: #FFFFFF;
+font-family: ＭＳ ゴシック;
+font-size: 11pt;
+}
+h1 {
+background-color: #80FFFF;
+font-size: 200%;
+border-left: 3pt #8080FF solid;
+}
+h2 {
+background-color: #C6FFFF;
+font-size: 120%;
+border-left: 2pt #8080FF solid;
+}
+h3 {
+font-size: 100%;
+border-bottom: 1pt #0000A0 solid;
+}
+h4 {
+font-size: 100%;
+}
+h5 {
+font-size: 100%;
+}
+h6 {
+font-size: 100%;
+}
+blockquote p,blockquote ol,blockquote ul,blockquote li {
+background-color: #FFFF80;
+}
+blockquote {
+background-color: #FFFF80;
+}
+pre {
+background-color: #EFEFEF;
+font-family: Consolas;
+}
+dt {
+color: #FFFFFF;
+background-color: #000080;
+}
+dd {
+background-color: #FAFAFA;
+}
+th {
+padding:0.3em;
+border: 1px #000000 solid;
+}
+td {
+padding:0.3em;
+border: 1px #000000 solid;
+}
+table.markdown {
+background-color: #F0FBFB;
+border: 1px #000000 solid;
+table-layout: auto;
+border-collapse: collapse;
+border-spacing: 0;
+empty-cells: show;
+}
+a {
+color: #FFFFFF;
+background-color: #800000;
+}
+code {
+background-color: #80FF80;
+}
+--></style>
+</head>
+<body>
+<div class="markdown-content"><a name="toc-top"></a>
+<a name="toc-1"></a><h1>[Excel VBA] appExportJson : Excelで作成したデータをJSON形式でExportするツール</h1>
+
+<a name="toc-1-1"></a><h2>overveiw :</h2>
+
+<ul><li>指定の形式で作成した、Excelファイルを、JSON形式に変換し、出力する。
+<ul><li>対象の形式
+<ul><li>Key-Value形式
+<li>ListObject形式 (TBL形式)
+<li>Named Range形式
+</ul></ul></ul>
+<a name="toc-1-1-1"></a><h3>機能 :</h3>
+<ul><li>Excelにて、指定の形式で、データ表を作成し、指定フォルダ（input folder)に配置する。
+<ul><li>指定の形式は、下記にて説明。
+</ul><li>メニューより、以下の機能を利用する。
+<ul><li>Export JSON (Key Value Sheet)
+<li>Export JSON (ListObject:TBL)
+<li>Export JSON (Named Ranges)
+</ul>
+</ul><a name="toc-1-2"></a><h2>実行環境 :</h2>
+
+<ul><li>Microsoft Excel for Microsoft 365 MSO (16.0.13001.20142) 32-bit
+</ul>
+<a name="toc-1-3"></a><h2>Installation :</h2>
+
+<ul><li><p>GitHubより、Cloneする。
+<ul><li> https://github.com/sakai-memoru/appExportJson<br>
+
+</ul></p><li><p>参照設定が必要。
+</p></ul>
+<p><img src="https://gyazo.com/7d30f2387e7818067fd7596a82e507e9.png" alt="image">
+</p><br>
+<br>
+
+<a name="toc-1-4"></a><h2>Usage :</h2>
+<ul><li><p>アプリは以下。
+<ul><li>アプリ本体 &nbsp;：appExportJson.xlsm
+<ul><li>Batch : ExportJsonMain.bas
+<ul><li>ExportJsonModule.bas
+<ul><li>GetKeyValue
+<li>GetTable
+<li>GetNames
+</ul></ul></ul><li>アプリconfig：config.json<br>
+
+</ul></p><li><p>appExportJson.xlsmを開く。
+</p></ul>
+<p><img src="https://gyazo.com/8b8535d17f900be082ecdffe2c6a502f.png" alt="menu">
+</p><br>
+
+<a name="toc-1-4-2"></a><h3>初期コンフィグ設定 :</h3>
+
+<pre>{
+    "BASE_FOLDER": "",
+    "INPUT_FOLDER": "input",
+    "OUTPUT_FOLDER": "output",
+    "TEMP_FOLDER": "input/temp",
+    "BACKUP_FOLDER": "input/backup",
+    "FORM_FOLDER": "forms",
+    "TRANSFORM_KEYVALUE": {
+        "SHEET_TYPE": "KEYVALUE",
+        "INPUT_LIKE": "KV*.xlsx",
+        "TARGET_WORD": "no",
+        "MACRO_GET_METHOD": "GetKeyValue"
+    },
+    "TRANSFORM_LISTOBJECT": {
+        "SHEET_TYPE": "LISTOBJECT",
+        "INPUT_LIKE": "TBL*.xlsx",
+        "TARGET_INDEX": 1,
+        "MACRO_GET_METHOD": "GetTable"
+    },
+    "TRANSFORM_NAMES": {
+        "SHEET_TYPE": "NAMES",
+        "INPUT_LIKE": "ApplicationForm*.xlsx",
+        "TARGET_PARAM": "A1",
+        "MACRO_GET_METHOD": "GetNames",
+        "DETAIL_FIELD": "definition"
+    },
+    "CONTROL_PREFIX": "__",
+    "SOURCE_FROM": "_source",
+    "APP_NAME" : "appExportJson"
+}
+</pre>
+
+<a name="toc-1-4-3"></a><h3>Environment :</h3>
+
+<p><img src="https://gyazo.com/de1d4b7da061302605815e150ca65658.png" alt="env">
+</p>
+<a name="toc-1-5"></a><h2>Execution sample :</h2>
+
+<a name="toc-1-5-4"></a><h3>Key Value Format</h3>
+<p><img src="https://gyazo.com/c1d99a5ffe5acbc253133936305c5fbc.png" alt="keyval">
+</p>
+<a name="toc-1-5-5"></a><h3>ListObject(TBL) Format</h3>
+<p><img src="https://gyazo.com/331c0cf9ac4aeaf86602c13c969af11a.png" alt="tbl">
+</p>
+<p><img src="https://gyazo.com/08d3852d57dff8357eb2c48df886a55b.png" alt="named">
+</p>
+<a name="toc-1-5-6"></a><h3>Named Range Format</h3>
+<p><img src="https://gyazo.com/a0af01ccecd1f71f221c8fd117679d8c.png" alt="namedrange">
+</p>
+<p><img src="https://gyazo.com/e321b7b8fcd4305064c529418dad3d09.png" alt="named">
+</p><br>
+
+<a name="toc-1-6"></a><h2>application I/F :</h2>
+
+<pre>'''' **********************************************
+'' @file ExportJsonMain.bas
+'' @parent appExportJson.xlsm
+''
+
+Public Sub Batch(ByVal datatype As String, Optional ByVal moveOn As Variant = False)
+'''' **********************************************
+'''' @function batch
+'''' @param datatype {String} processing data type
+''''        dictionary key in config.json
+''''          "TRANSFORM_KEYVALUE" : key value formatted sheet
+''''          "TRANSFORM_LISTOBJECT" : Tbl sheet
+''''          "TRANSFORM_NAMES" : Named range sheet
+'''' @param moveOn  {Variant&lt;boolean&gt;}
+''''            a flag ot moving input files
+''
+</pre>
+
+<a name="toc-1-7"></a><h2>note :</h2>
+<ul><li>落ち着いたら、もう少し記述を追加します。
+</ul>
+<a name="toc-1-8"></a><h2>reference :</h2>
+
+<ul><li>以下の外部ライブラリを使用しています。
+<li>VBA-JSON : JsonConverter.bas
+<ul><li>https://github.com/VBA-tools/VBA-JSON
+</ul><li>MiniTemplator
+<ul><li>https://www.source-code.biz/MiniTemplator/
+</ul></ul>
+<p>// --- end of README.md
+</p>
+<hr>Output by WZ Markdown Editor (Trial)<br></div>
+</body>
+</html>

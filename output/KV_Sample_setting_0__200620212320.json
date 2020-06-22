@@ -1,0 +1,30 @@
+{
+    "debug": "on",
+    "window": {
+        "title": "SampleKonfabulatorWidget",
+        "name": "main_window",
+        "width": 500,
+        "height": 500
+    },
+    "image": {
+        "src": "Images/Sun.png",
+        "name": "sun1",
+        "hOffset": 250,
+        "vOffset": 250,
+        "alignment": "center"
+    },
+    "text": {
+        "data": "ClickHere",
+        "size": 36,
+        "style": "bold",
+        "name": "text1",
+        "hOffset": 250,
+        "vOffset": 100,
+        "alignment": "center",
+        "onMouseUp": "sun1.opacity=(sun1.opacity/100)*90;"
+    },
+    "_source": "'KV_Sample.xlsx'!setting",
+    "_source_data": "2020-06-16T23:57:52.000Z",
+    "_id": "B8945C0B-CB16-DC6E-B1E5-8C19749A44CC",
+    "_created": "2020-06-20T12:23:20.000Z"
+}

@@ -1,0 +1,30 @@
+{
+    "BASE_FOLDER": "",
+    "INPUT_FOLDER": "input",
+    "OUTPUT_FOLDER": "output",
+    "TEMP_FOLDER": "input/temp",
+    "BACKUP_FOLDER": "input/backup",
+    "FORM_FOLDER": "forms",
+    "TRANSFORM_KEYVALUE": {
+        "SHEET_TYPE": "KEYVALUE",
+        "INPUT_LIKE": "KV*.xlsx",
+        "TARGET_WORD": "no",
+        "MACRO_GET_METHOD": "GetKeyValue"
+    },
+    "TRANSFORM_LISTOBJECT": {
+        "SHEET_TYPE": "LISTOBJECT",
+        "INPUT_LIKE": "TBL*.xlsx",
+        "TARGET_INDEX": 1,
+        "MACRO_GET_METHOD": "GetTable"
+    },
+    "TRANSFORM_NAMES": {
+        "SHEET_TYPE": "NAMES",
+        "INPUT_LIKE": "ApplicationForm*.xlsx",
+        "TARGET_PARAM": "A1",
+        "MACRO_GET_METHOD": "GetNames",
+        "DETAIL_FIELD": "definition"
+    },
+    "CONTROL_PREFIX": "__",
+    "SOURCE_FROM": "_source",
+    "APP_NAME" : "appExportJson"
+}
